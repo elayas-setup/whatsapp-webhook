@@ -1,6 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const axios = require("axios");
+const cors = require("cors");
 
 dotenv.config();
 
@@ -17,6 +18,11 @@ if (!VERIFY_TOKEN) {
 }
 
 app.use(express.json({ type: "*/*" }));
+app.use(
+  cors({
+    origin: "*", // abrir para pruebas; restringe a tu dominio si lo deseas
+  })
+);
 
 app.get("/", (_req, res) => {
   res
